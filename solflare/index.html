@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Solflare Wallet Landing</title>
+  <title>Manage your Solflare wallet with ease | Solflare</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -48,6 +48,7 @@
       position: relative;
       padding: 0 30px;
       min-width: 0;
+      z-index: 2;
     }
     .right-panel {
       flex: 1;
@@ -57,6 +58,7 @@
       justify-content: center;
       position: relative;
       min-width: 0;
+      z-index: 1;
     }
     .logo {
       font-family: 'UnifrakturCook', cursive;
@@ -170,6 +172,10 @@
       }
       .right-panel {
         min-height: 200px;
+        order: 2;
+      }
+      .left-panel {
+        order: 1;
       }
       .main-btn, .secondary-btn {
         width: 100%;
@@ -195,6 +201,12 @@
       .crown-video {
         width: 100%;
         min-width: 0;
+        max-width: 100vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .right-panel {
+        display: none;
       }
     }
     .btn-loader {
