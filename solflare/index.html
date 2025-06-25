@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Solflare Wallet Landing</title>
-  <meta name="viewport" content="width=900, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -11,6 +11,12 @@
       margin: 0;
       padding: 0;
       background: #111217;
+      max-width: 100vw;
+      overflow-x: hidden;
+      box-sizing: border-box;
+    }
+    *, *::before, *::after {
+      box-sizing: inherit;
     }
     body {
       min-height: 100vh;
@@ -29,6 +35,7 @@
       overflow: hidden;
       box-shadow: 0 10px 36px rgba(0,0,0,0.18);
       background: #111217;
+      max-width: 100vw;
     }
     .left-panel {
       flex: 1;
@@ -40,6 +47,7 @@
       align-items: center;
       position: relative;
       padding: 0 30px;
+      min-width: 0;
     }
     .right-panel {
       flex: 1;
@@ -48,6 +56,7 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      min-width: 0;
     }
     .logo {
       font-family: 'UnifrakturCook', cursive;
@@ -116,6 +125,7 @@
       display: flex;
       gap: 18px;
       margin-top: 0;
+      flex-wrap: wrap;
     }
     .wallet-btn {
       background: #232425;
@@ -150,13 +160,41 @@
         width: 100vw;
         min-height: 100vh;
         border-radius: 0;
+        max-width: 100vw;
       }
       .right-panel, .left-panel {
         min-width: 0;
+        width: 100vw;
         border-radius: 0;
+        padding: 0 10px;
       }
       .right-panel {
         min-height: 200px;
+      }
+      .main-btn, .secondary-btn {
+        width: 100%;
+        min-width: 0;
+        font-size: 18px;
+      }
+      .title {
+        font-size: 32px;
+      }
+      .logo {
+        font-size: 32px;
+        margin-bottom: 32px;
+      }
+      .wallet-options {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      .wallet-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .crown-video {
+        width: 100%;
+        min-width: 0;
       }
     }
     .btn-loader {
@@ -207,21 +245,17 @@
       <div class="continue-with">OR CONTINUE WITH</div>
       <div class="wallet-options">
         <button class="wallet-btn" onclick="window.location.href='ledger.html'">
-  <img src="ledger.png" alt="Ledger" style="width:22px;height:22px;vertical-align:middle;margin-right:6px;">
-  Ledger
-</button>
-<button class="wallet-btn" onclick="window.location.href='keystone.html'">
-  <img src="keystone.png" alt="Keystone" style="width:22px;height:22px;vertical-align:middle;margin-right:6px;">
-  Keystone
-</button>
+          <img src="ledger.png" alt="Ledger" style="width:22px;height:22px;vertical-align:middle;margin-right:6px;">
+          Ledger
+        </button>
+        <button class="wallet-btn" onclick="window.location.href='keystone.html'">
+          <img src="keystone.png" alt="Keystone" style="width:22px;height:22px;vertical-align:middle;margin-right:6px;">
+          Keystone
+        </button>
       </div>
     </div>
     <div class="right-panel">
       <video class="crown-video" src="sol.mp4" autoplay loop muted playsinline></video>
-      <!-- 
-        Replace "sol.mp4" with the actual filename/path of your crown video.
-        The video will play automatically, loop, and be muted (no controls for best visual match).
-      -->
     </div>
   </div>
 
@@ -239,6 +273,7 @@
           var url = btn.getAttribute('data-url');
           if (url) window.location.href = url;
           // If wallet-btn, you can set a different url or action here if needed
+          if (!url && btn.onclick) btn.onclick();
         }, 2000);
       });
     });
